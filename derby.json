@@ -67,7 +67,7 @@
   }
  },
  "table": {
-  "matchday": 11,
+  "matchday": 10,
   "rows": [
    {
     "team": "PSG",
@@ -82,7 +82,7 @@
     "diff": 7
    },
    {
-    "team": "Paris",
+    "team": "Paris FC",
     "played": 10,
     "pts": 20,
     "diff": 7
