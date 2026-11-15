@@ -115,12 +115,22 @@ def table():
     }
 
 
+def secrets():
+    """Secret messages, edited by hand in messages.json (one per device)."""
+    path = os.path.join(os.path.dirname(OUT), "messages.json")
+    if not os.path.exists(path):
+        return {}
+    msgs = json.load(open(path, encoding="utf-8"))
+    return {k: str(msgs.get(k, ""))[:150] for k in ("Lens", "Lille")}
+
+
 def main():
     lens = get(f"/teams/{LENS}/matches?limit=100")["matches"]
     lille = get(f"/teams/{LILLE}/matches?limit=100")["matches"]
     data = {"v": 2, **derby(lens),
             "clubs": {"Lens": club(LENS, lens), "Lille": club(LILLE, lille)},
-            "table": table()}
+            "table": table(),
+            "secret": secrets()}
 
     text = json.dumps(data, ensure_ascii=False, indent=1) + "\n"
     old = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""

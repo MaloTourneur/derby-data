@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: "50 4,10,16,22 * * *"  # 10 min before the devices wake (Paris winter time)
   workflow_dispatch:                 # "Run workflow" button
+  push:
+    paths: [messages.json]         # a new secret message goes out right away
 permissions:
   contents: write
 jobs:
