@@ -52,7 +52,8 @@
     "time": "20h45",
     "home": "Lens",
     "away": "Toulouse",
-    "matchday": 11
+    "matchday": 11,
+    "competition": "L1"
    }
   },
   "Lille": {
@@ -62,7 +63,8 @@
     "time": "20h45",
     "home": "Lille",
     "away": "Lyon",
-    "matchday": 11
+    "matchday": 11,
+    "competition": "L1"
    }
   }
  },
