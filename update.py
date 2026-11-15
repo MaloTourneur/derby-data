@@ -31,7 +31,7 @@ def name(team):
     n = team.get("shortName") or team["name"]
     n = re.sub(r"^(Olympique( de)?|Stade|AS|OGC|RC|FC|AJ|SCO|SM|ESTAC|Racing Club de|Havre AC)\s+", "", n)
     n = re.sub(r"\s+(FC|AC|HAC|SCO|Foot|Olympique)$", "", n)
-    return {"Paris Saint-Germain": "PSG", "Rennais": "Rennes", "Brestois 29": "Brest", "Brestois": "Brest"}.get(n, n)[:15]
+    return {"Paris Saint-Germain": "PSG", "Paris": "Paris FC", "Rennais": "Rennes", "Brestois 29": "Brest", "Brestois": "Brest"}.get(n, n)[:15]
 
 
 def is_derby(m):
@@ -108,7 +108,7 @@ def table():
     s = get("/competitions/FL1/standings")
     total = next(t for t in s["standings"] if t["type"] == "TOTAL")["table"]
     return {
-        "matchday": s["season"].get("currentMatchday") or 0,
+        "matchday": max((r["playedGames"] for r in total), default=0),  # journées played
         "rows": [{"team": name(r["team"]), "played": r["playedGames"], "pts": r["points"],
                   "diff": r["goalDifference"]} for r in total],
     }
