@@ -2,8 +2,11 @@
 
 Run by GitHub Actions every 6 h. Needs the env var FOOTBALL_DATA_TOKEN (free key).
 Standard library only. Writes derby.json only if the data changed.
+
+Contents: last 5 derbies + next derby, and per club (Lens, Lille) the next Ligue 1
+match and the last 5 league results, plus the Ligue 1 table.
 """
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.request
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -21,6 +24,16 @@ def get(path):
         return json.load(r)
 
 
+def name(team):
+    """Short display name that fits the screen: "Lens", "Marseille", "PSG"..."""
+    if team["id"] in NAMES:
+        return NAMES[team["id"]]
+    n = team.get("shortName") or team["name"]
+    n = re.sub(r"^(Olympique( de)?|Stade|AS|OGC|RC|FC|AJ|SCO|SM|ESTAC|Racing Club de|Havre AC)\s+", "", n)
+    n = re.sub(r"\s+(FC|AC|HAC|SCO|Foot|Olympique)$", "", n)
+    return {"Paris Saint-Germain": "PSG", "Rennais": "Rennes", "Brestois 29": "Brest", "Brestois": "Brest"}.get(n, n)[:15]
+
+
 def is_derby(m):
     return {m["homeTeam"]["id"], m["awayTeam"]["id"]} == {LENS, LILLE}
 
@@ -29,25 +42,35 @@ def local(m):
     return datetime.fromisoformat(m["utcDate"].replace("Z", "+00:00")).astimezone(PARIS)
 
 
-def main():
-    matches = [m for m in get(f"/teams/{LENS}/matches?limit=100")["matches"] if is_derby(m)]
-    upcoming = sorted((m for m in matches if m["status"] in ("SCHEDULED", "TIMED", "POSTPONED")), key=lambda m: m["utcDate"])
-    played = sorted((m for m in matches if m["status"] == "FINISHED"), key=lambda m: m["utcDate"])
-    anchor = (upcoming or played[::-1] or [None])[0]
+def when(m):
+    """date + kickoff time ("" while the time isn't fixed)."""
+    t = local(m)
+    return t.strftime("%Y-%m-%d"), t.strftime("%Hh%M") if m["status"] == "TIMED" else ""
+
+
+def upcoming(matches):
+    return sorted((m for m in matches if m["status"] in ("SCHEDULED", "TIMED")), key=lambda m: m["utcDate"])
+
+
+def finished(matches):
+    return sorted((m for m in matches if m["status"] == "FINISHED"), key=lambda m: m["utcDate"])
+
+
+def derby(lens_matches):
+    matches = [m for m in lens_matches if is_derby(m)]
+    nxt, played = upcoming(matches), finished(matches)
+    anchor = (nxt or played[::-1] or [None])[0]
     if anchor is None:
         sys.exit("no Lens-Lille match found this season")
-
     # Last 5 meetings, all seasons (head2head looks back further than this season).
     h2h = get(f"/matches/{anchor['id']}/head2head?limit=10")["matches"]
-    finished = {m["id"]: m for m in h2h + played if m["status"] == "FINISHED" and is_derby(m)}
-    last = sorted(finished.values(), key=lambda m: m["utcDate"], reverse=True)[:5]
+    done = {m["id"]: m for m in h2h + played if m["status"] == "FINISHED" and is_derby(m)}
+    last = sorted(done.values(), key=lambda m: m["utcDate"], reverse=True)[:5]
     if not last:
         sys.exit("no finished derby found")
-
-    data = {
-        "v": 2,
+    out = {
         "last": [{
-            "date": local(m).strftime("%Y-%m-%d"),
+            "date": when(m)[0],
             "home": NAMES[m["homeTeam"]["id"]],
             "hg": m["score"]["fullTime"]["home"],
             "ag": m["score"]["fullTime"]["away"],
@@ -55,19 +78,50 @@ def main():
         } for m in last],
         "next": None,
     }
-    if upcoming and upcoming[0]["status"] != "POSTPONED":
-        n = upcoming[0]
-        t = local(n)
-        data["next"] = {
-            "date": t.strftime("%Y-%m-%d"),
-            # SCHEDULED = kickoff time not fixed yet
-            "time": t.strftime("%Hh%M") if n["status"] == "TIMED" else "",
-            "home": NAMES[n["homeTeam"]["id"]],
-            "away": NAMES[n["awayTeam"]["id"]],
-            "stadium": STADIUMS[n["homeTeam"]["id"]],
-        }
+    if nxt:
+        n = nxt[0]
+        date, time = when(n)
+        out["next"] = {"date": date, "time": time, "home": NAMES[n["homeTeam"]["id"]],
+                       "away": NAMES[n["awayTeam"]["id"]], "stadium": STADIUMS[n["homeTeam"]["id"]]}
+    return out
 
-    text = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+
+def club(team_id, matches):
+    """Next Ligue 1 match + last 5 league results (V/N/D, oldest first)."""
+    league = [m for m in matches if m["competition"]["code"] == "FL1"]
+    form = ""
+    for m in finished(league)[-5:]:
+        hg, ag = m["score"]["fullTime"]["home"], m["score"]["fullTime"]["away"]
+        mine, theirs = (hg, ag) if m["homeTeam"]["id"] == team_id else (ag, hg)
+        form += "V" if mine > theirs else "N" if mine == theirs else "D"
+    nxt = upcoming(league)
+    out = {"form": form, "next": None}
+    if nxt:
+        n = nxt[0]
+        date, time = when(n)
+        out["next"] = {"date": date, "time": time, "home": name(n["homeTeam"]),
+                       "away": name(n["awayTeam"]), "matchday": n.get("matchday") or 0}
+    return out
+
+
+def table():
+    s = get("/competitions/FL1/standings")
+    total = next(t for t in s["standings"] if t["type"] == "TOTAL")["table"]
+    return {
+        "matchday": s["season"].get("currentMatchday") or 0,
+        "rows": [{"team": name(r["team"]), "played": r["playedGames"], "pts": r["points"],
+                  "diff": r["goalDifference"]} for r in total],
+    }
+
+
+def main():
+    lens = get(f"/teams/{LENS}/matches?limit=100")["matches"]
+    lille = get(f"/teams/{LILLE}/matches?limit=100")["matches"]
+    data = {"v": 2, **derby(lens),
+            "clubs": {"Lens": club(LENS, lens), "Lille": club(LILLE, lille)},
+            "table": table()}
+
+    text = json.dumps(data, ensure_ascii=False, indent=1) + "\n"
     old = open(OUT, encoding="utf-8").read() if os.path.exists(OUT) else ""
     if text != old:
         open(OUT, "w", encoding="utf-8", newline="\n").write(text)
