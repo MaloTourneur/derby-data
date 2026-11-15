@@ -1,47 +1,182 @@
 {
-  "v": 2,
-  "last": [
-    {
-      "date": "2026-10-30",
-      "home": "Lille",
-      "hg": 1,
-      "ag": 0,
-      "away": "Lens"
-    },
-    {
-      "date": "2026-04-04",
-      "home": "Lille",
-      "hg": 3,
-      "ag": 0,
-      "away": "Lens"
-    },
-    {
-      "date": "2025-09-20",
-      "home": "Lens",
-      "hg": 3,
-      "ag": 0,
-      "away": "Lille"
-    },
-    {
-      "date": "2025-03-30",
-      "home": "Lille",
-      "hg": 1,
-      "ag": 0,
-      "away": "Lens"
-    },
-    {
-      "date": "2024-10-26",
-      "home": "Lens",
-      "hg": 0,
-      "ag": 2,
-      "away": "Lille"
-    }
-  ],
-  "next": {
-    "date": "2027-03-20",
-    "time": "",
-    "home": "Lens",
-    "away": "Lille",
-    "stadium": "Stade Bollaert-Delelis"
+ "v": 2,
+ "last": [
+  {
+   "date": "2026-10-30",
+   "home": "Lille",
+   "hg": 1,
+   "ag": 0,
+   "away": "Lens"
+  },
+  {
+   "date": "2026-04-04",
+   "home": "Lille",
+   "hg": 3,
+   "ag": 0,
+   "away": "Lens"
+  },
+  {
+   "date": "2025-09-20",
+   "home": "Lens",
+   "hg": 3,
+   "ag": 0,
+   "away": "Lille"
+  },
+  {
+   "date": "2025-03-30",
+   "home": "Lille",
+   "hg": 1,
+   "ag": 0,
+   "away": "Lens"
+  },
+  {
+   "date": "2024-10-26",
+   "home": "Lens",
+   "hg": 0,
+   "ag": 2,
+   "away": "Lille"
   }
+ ],
+ "next": {
+  "date": "2027-03-20",
+  "time": "",
+  "home": "Lens",
+  "away": "Lille",
+  "stadium": "Stade Bollaert-Delelis"
+ },
+ "clubs": {
+  "Lens": {
+   "form": "VVVDD",
+   "next": {
+    "date": "2026-11-21",
+    "time": "20h45",
+    "home": "Lens",
+    "away": "Toulouse",
+    "matchday": 11
+   }
+  },
+  "Lille": {
+   "form": "VNNVV",
+   "next": {
+    "date": "2026-11-21",
+    "time": "20h45",
+    "home": "Lille",
+    "away": "Lyon",
+    "matchday": 11
+   }
+  }
+ },
+ "table": {
+  "matchday": 11,
+  "rows": [
+   {
+    "team": "PSG",
+    "played": 10,
+    "pts": 23,
+    "diff": 12
+   },
+   {
+    "team": "Lille",
+    "played": 10,
+    "pts": 21,
+    "diff": 7
+   },
+   {
+    "team": "Paris",
+    "played": 10,
+    "pts": 20,
+    "diff": 7
+   },
+   {
+    "team": "Marseille",
+    "played": 10,
+    "pts": 18,
+    "diff": 8
+   },
+   {
+    "team": "Lyon",
+    "played": 10,
+    "pts": 17,
+    "diff": 6
+   },
+   {
+    "team": "Nice",
+    "played": 10,
+    "pts": 17,
+    "diff": 3
+   },
+   {
+    "team": "Monaco",
+    "played": 10,
+    "pts": 16,
+    "diff": 2
+   },
+   {
+    "team": "Rennes",
+    "played": 10,
+    "pts": 16,
+    "diff": 0
+   },
+   {
+    "team": "Brest",
+    "played": 10,
+    "pts": 15,
+    "diff": 6
+   },
+   {
+    "team": "Lorient",
+    "played": 10,
+    "pts": 15,
+    "diff": 1
+   },
+   {
+    "team": "Lens",
+    "played": 10,
+    "pts": 13,
+    "diff": 2
+   },
+   {
+    "team": "Toulouse",
+    "played": 10,
+    "pts": 13,
+    "diff": 1
+   },
+   {
+    "team": "Strasbourg",
+    "played": 10,
+    "pts": 10,
+    "diff": -4
+   },
+   {
+    "team": "Auxerre",
+    "played": 10,
+    "pts": 10,
+    "diff": -11
+   },
+   {
+    "team": "Le Mans",
+    "played": 10,
+    "pts": 8,
+    "diff": -7
+   },
+   {
+    "team": "Angers",
+    "played": 10,
+    "pts": 8,
+    "diff": -10
+   },
+   {
+    "team": "Troyes",
+    "played": 10,
+    "pts": 8,
+    "diff": -10
+   },
+   {
+    "team": "Le Havre",
+    "played": 10,
+    "pts": 2,
+    "diff": -13
+   }
+  ]
+ }
 }
