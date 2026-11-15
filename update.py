@@ -87,20 +87,21 @@ def derby(lens_matches):
 
 
 def club(team_id, matches):
-    """Next Ligue 1 match + last 5 league results (V/N/D, oldest first)."""
+    """Next Ligue 1 or Champions League match + last 5 league results (V/N/D, oldest first)."""
     league = [m for m in matches if m["competition"]["code"] == "FL1"]
     form = ""
     for m in finished(league)[-5:]:
         hg, ag = m["score"]["fullTime"]["home"], m["score"]["fullTime"]["away"]
         mine, theirs = (hg, ag) if m["homeTeam"]["id"] == team_id else (ag, hg)
         form += "V" if mine > theirs else "N" if mine == theirs else "D"
-    nxt = upcoming(league)
+    nxt = upcoming([m for m in matches if m["competition"]["code"] in ("FL1", "CL")])
     out = {"form": form, "next": None}
     if nxt:
         n = nxt[0]
         date, time = when(n)
         out["next"] = {"date": date, "time": time, "home": name(n["homeTeam"]),
-                       "away": name(n["awayTeam"]), "matchday": n.get("matchday") or 0}
+                       "away": name(n["awayTeam"]), "matchday": n.get("matchday") or 0,
+                       "competition": "LDC" if n["competition"]["code"] == "CL" else "L1"}
     return out
 
 
