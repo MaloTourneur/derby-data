@@ -180,5 +180,9 @@
     "diff": -13
    }
   ]
+ },
+ "secret": {
+  "Lens": "Message secret pour le fan de Lens",
+  "Lille": "Message secret pour le fan de Lille"
  }
 }
