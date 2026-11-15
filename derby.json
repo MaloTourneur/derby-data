@@ -1,0 +1,47 @@
+{
+  "v": 2,
+  "last": [
+    {
+      "date": "2026-10-30",
+      "home": "Lille",
+      "hg": 1,
+      "ag": 0,
+      "away": "Lens"
+    },
+    {
+      "date": "2026-04-04",
+      "home": "Lille",
+      "hg": 3,
+      "ag": 0,
+      "away": "Lens"
+    },
+    {
+      "date": "2025-09-20",
+      "home": "Lens",
+      "hg": 3,
+      "ag": 0,
+      "away": "Lille"
+    },
+    {
+      "date": "2025-03-30",
+      "home": "Lille",
+      "hg": 1,
+      "ag": 0,
+      "away": "Lens"
+    },
+    {
+      "date": "2024-10-26",
+      "home": "Lens",
+      "hg": 0,
+      "ag": 2,
+      "away": "Lille"
+    }
+  ],
+  "next": {
+    "date": "2027-03-20",
+    "time": "",
+    "home": "Lens",
+    "away": "Lille",
+    "stadium": "Stade Bollaert-Delelis"
+  }
+}
