@@ -69,7 +69,7 @@
   }
  },
  "table": {
-  "matchday": 10,
+  "matchday": 11,
   "rows": [
    {
     "team": "PSG",
@@ -144,6 +144,12 @@
     "diff": 1
    },
    {
+    "team": "Troyes",
+    "played": 11,
+    "pts": 11,
+    "diff": -8
+   },
+   {
     "team": "Strasbourg",
     "played": 10,
     "pts": 10,
@@ -168,16 +174,10 @@
     "diff": -10
    },
    {
-    "team": "Troyes",
-    "played": 10,
-    "pts": 8,
-    "diff": -10
-   },
-   {
     "team": "Le Havre",
-    "played": 10,
+    "played": 11,
     "pts": 2,
-    "diff": -13
+    "diff": -15
    }
   ]
  },
