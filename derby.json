@@ -46,25 +46,25 @@
  },
  "clubs": {
   "Lens": {
-   "form": "VVVDD",
+   "form": "VVDDN",
    "next": {
-    "date": "2026-11-21",
-    "time": "20h45",
-    "home": "Lens",
-    "away": "Toulouse",
-    "matchday": 11,
-    "competition": "L1"
+    "date": "2026-11-24",
+    "time": "21h00",
+    "home": "RB Leipzig",
+    "away": "Lens",
+    "matchday": 5,
+    "competition": "LDC"
    }
   },
   "Lille": {
-   "form": "VNNVV",
+   "form": "NNVVD",
    "next": {
-    "date": "2026-11-21",
-    "time": "20h45",
+    "date": "2026-11-25",
+    "time": "21h00",
     "home": "Lille",
-    "away": "Lyon",
-    "matchday": 11,
-    "competition": "L1"
+    "away": "Bayern",
+    "matchday": 5,
+    "competition": "LDC"
    }
   }
  },
@@ -73,19 +73,25 @@
   "rows": [
    {
     "team": "PSG",
-    "played": 10,
-    "pts": 23,
-    "diff": 12
+    "played": 11,
+    "pts": 26,
+    "diff": 13
    },
    {
     "team": "Lille",
-    "played": 10,
+    "played": 11,
     "pts": 21,
-    "diff": 7
+    "diff": 6
    },
    {
     "team": "Paris FC",
     "played": 10,
+    "pts": 20,
+    "diff": 7
+   },
+   {
+    "team": "Lyon",
+    "played": 11,
     "pts": 20,
     "diff": 7
    },
@@ -96,21 +102,21 @@
     "diff": 8
    },
    {
-    "team": "Lyon",
-    "played": 10,
-    "pts": 17,
-    "diff": 6
+    "team": "Brest",
+    "played": 11,
+    "pts": 18,
+    "diff": 7
    },
    {
     "team": "Nice",
-    "played": 10,
+    "played": 11,
     "pts": 17,
-    "diff": 3
+    "diff": 2
    },
    {
     "team": "Monaco",
-    "played": 10,
-    "pts": 16,
+    "played": 11,
+    "pts": 17,
     "diff": 2
    },
    {
@@ -120,12 +126,6 @@
     "diff": 0
    },
    {
-    "team": "Brest",
-    "played": 10,
-    "pts": 15,
-    "diff": 6
-   },
-   {
     "team": "Lorient",
     "played": 10,
     "pts": 15,
@@ -133,14 +133,14 @@
    },
    {
     "team": "Lens",
-    "played": 10,
-    "pts": 13,
+    "played": 11,
+    "pts": 14,
     "diff": 2
    },
    {
     "team": "Toulouse",
-    "played": 10,
-    "pts": 13,
+    "played": 11,
+    "pts": 14,
     "diff": 1
    },
    {
@@ -150,16 +150,16 @@
     "diff": -8
    },
    {
-    "team": "Strasbourg",
-    "played": 10,
-    "pts": 10,
-    "diff": -4
+    "team": "Auxerre",
+    "played": 11,
+    "pts": 11,
+    "diff": -11
    },
    {
-    "team": "Auxerre",
-    "played": 10,
+    "team": "Strasbourg",
+    "played": 11,
     "pts": 10,
-    "diff": -11
+    "diff": -5
    },
    {
     "team": "Le Mans",
