@@ -78,16 +78,16 @@
     "diff": 13
    },
    {
+    "team": "Paris FC",
+    "played": 11,
+    "pts": 23,
+    "diff": 11
+   },
+   {
     "team": "Lille",
     "played": 11,
     "pts": 21,
     "diff": 6
-   },
-   {
-    "team": "Paris FC",
-    "played": 10,
-    "pts": 20,
-    "diff": 7
    },
    {
     "team": "Lyon",
@@ -97,9 +97,9 @@
    },
    {
     "team": "Marseille",
-    "played": 10,
+    "played": 11,
     "pts": 18,
-    "diff": 8
+    "diff": 7
    },
    {
     "team": "Brest",
@@ -121,14 +121,14 @@
    },
    {
     "team": "Rennes",
-    "played": 10,
-    "pts": 16,
+    "played": 11,
+    "pts": 17,
     "diff": 0
    },
    {
     "team": "Lorient",
-    "played": 10,
-    "pts": 15,
+    "played": 11,
+    "pts": 16,
     "diff": 1
    },
    {
@@ -142,6 +142,12 @@
     "played": 11,
     "pts": 14,
     "diff": 1
+   },
+   {
+    "team": "Le Mans",
+    "played": 11,
+    "pts": 11,
+    "diff": -6
    },
    {
     "team": "Troyes",
@@ -162,16 +168,10 @@
     "diff": -5
    },
    {
-    "team": "Le Mans",
-    "played": 10,
-    "pts": 8,
-    "diff": -7
-   },
-   {
     "team": "Angers",
-    "played": 10,
+    "played": 11,
     "pts": 8,
-    "diff": -10
+    "diff": -14
    },
    {
     "team": "Le Havre",
