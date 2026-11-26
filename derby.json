@@ -59,12 +59,12 @@
   "Lille": {
    "form": "NNVVD",
    "next": {
-    "date": "2026-11-25",
-    "time": "21h00",
-    "home": "Lille",
-    "away": "Bayern",
-    "matchday": 5,
-    "competition": "LDC"
+    "date": "2026-11-28",
+    "time": "20h45",
+    "home": "Le Mans",
+    "away": "Lille",
+    "matchday": 12,
+    "competition": "L1"
    }
   }
  },
