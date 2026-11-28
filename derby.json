@@ -69,7 +69,7 @@
   }
  },
  "table": {
-  "matchday": 11,
+  "matchday": 12,
   "rows": [
    {
     "team": "PSG",
@@ -79,9 +79,15 @@
    },
    {
     "team": "Paris FC",
-    "played": 11,
+    "played": 12,
     "pts": 23,
-    "diff": 11
+    "diff": 10
+   },
+   {
+    "team": "Brest",
+    "played": 12,
+    "pts": 21,
+    "diff": 8
    },
    {
     "team": "Lille",
@@ -97,12 +103,6 @@
    },
    {
     "team": "Marseille",
-    "played": 11,
-    "pts": 18,
-    "diff": 7
-   },
-   {
-    "team": "Brest",
     "played": 11,
     "pts": 18,
     "diff": 7
